@@ -259,7 +259,11 @@ public class World {
 
 	// A REFAIRE
 	public void deplacementIntruder(Intruder entite) {
-
+			
+		if(entite.getNbrSourceArgent() == entite.getNbrSourceArgent()) {
+			deplacementIntruderVersSortie(entite);
+		}
+		
 		int choix = 0;
 
 		do {
@@ -647,7 +651,55 @@ public class World {
 
 		return false;
 	}
-
+	
+	/**
+	 * Utiliser uniquement par les intruders pour se deplacer vers la sortie la plus proche
+	 */
+	public void deplacementIntruderVersSortie(Intruder e) {
+		String indxSortiePlusProche = sortieLePlusProche(e);
+		System.out.println("Sortie la plus proche " + indxSortiePlusProche);
+	}
+	
+	/**
+	 * Permet de connaitre la sortie la plus proche d'un intruder grace a ces coordonnées 
+	 * @return un String des coordonnée de la sortie la plus proche
+	 */
+	public String sortieLePlusProche(Intruder e) {
+		String indxSortiePlusProche = this.indxSortie.get(0);
+		
+		int xSortie = 0;
+		int ySortie = 0;
+		
+		int x = 0;
+		int y = 0;
+		
+		for(String sortieIndex : this.indxSortie) {
+			xSortie = Integer.parseInt(sortieIndex.split(" ")[0]);
+			ySortie = Integer.parseInt(sortieIndex.split(" ")[1]);
+			
+			if(xSortie - e.getPosX() < 0){
+				x = e.getPosX() - xSortie;
+			}else {
+				x = xSortie - e.getPosX();
+			}
+			
+			if(ySortie - e.getPosY() < 0){
+				y = e.getPosY() - ySortie;
+			}else {
+				y = ySortie - e.getPosY();
+			}
+			
+			System.out.println(x + " " + y);
+			
+			if(x + y < Integer.parseInt(indxSortiePlusProche.split(" ")[0])+Integer.parseInt(indxSortiePlusProche.split(" ")[1])) {
+				indxSortiePlusProche = x + " " + y;
+			}
+			
+		}
+		
+		return indxSortiePlusProche;
+	}
+	
 	public boolean peuxAttraperIntru(Drone entite) {
 
 		if(!entite.isAttraperIntruder() && !this.Intruders.isEmpty()) {

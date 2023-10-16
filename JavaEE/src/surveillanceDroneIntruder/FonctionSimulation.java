@@ -67,6 +67,11 @@ public class FonctionSimulation {
 		int nbrTour = 0;
 		while(!world.getIntruders().isEmpty()) {
 			
+			System.out.println("Liste Intruders : " + world.getIntruders().size());
+			System.out.println("Nombre de sac intruders : " + world.getIntruders().get(0).getNbrSourceArgent());
+			System.out.println("Attraper source d'argent : " + world.getIntruders().get(0).isAttraperSourceArgent());
+			System.out.println("Sur stock d'argent : " + world.getIntruders().get(0).isSurStockArgent());
+			
 			clearTerminal();
 			System.out.println("Tour n°" + nbrTour);
 			affichageSimulation();
@@ -94,10 +99,10 @@ public class FonctionSimulation {
 			System.out.println("Tour n°" + nbrTour);
 			affichageSimulation();
 			System.out.println("Liste Drone : " + world.getDrones().size());
-			System.out.println("Liste Drone : " + world.getIntruders().size());
-			
+			System.out.println("Liste Intruder : " + world.getIntruders().size());
+			int i = 0;
 			for(Intruder intruder : world.getIntruders()) {
-				System.out.println("Intruder :" + intruder.getPosX() + " " + intruder.getPosY());
+				System.out.println("Intruder N°" + i + ":" + intruder.getPosX() + " " + intruder.getPosY());
 				do {
 					System.out.println("\nAppuyer sur [q] pour continuer\n");
 					try {
@@ -107,14 +112,11 @@ public class FonctionSimulation {
 					}
 				}while(check != 'q');
 				world.deplacementIntruder(intruder);
-				System.out.println("Intruder :" + intruder.getPosX() + " " + intruder.getPosY());
+				world.deplacementIntruderVersSortie(intruder);
+				i++;
 			}
 			
 			nbrTour++;
-			System.out.println("Liste Intruders : " + world.getIntruders().size());
-			System.out.println("Nombre de sac intruders : " + world.getIntruders().get(0).getNbrSourceArgent());
-			System.out.println("Attraper source d'argent : " + world.getIntruders().get(0).isAttraperSourceArgent());
-			System.out.println("Sur stock d'argent : " + world.getIntruders().get(0).isSurStockArgent());
 		}
 		
 		System.out.println();
