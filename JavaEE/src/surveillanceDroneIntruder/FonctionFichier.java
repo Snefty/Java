@@ -13,8 +13,10 @@ public class FonctionFichier {
 		World world = null;
 
 		try {
-
-			String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "maps" + File.separator + nameFile;
+			
+			String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "surveillanceDroneIntruder" + File.separator + nameFile;
+			System.out.println(path);
+			
 			File file = new File(path);
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -67,35 +69,6 @@ public class FonctionFichier {
 		}
 
 		return world;
-	}
-
-	public static int afficherFichierMaps(){
-		File dir = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "maps");
-		File[] list = dir.listFiles();
-		int nbrFichier = 0;
-		for(File item : list){
-			if(item.isFile())
-			{ 
-				System.out.format("["+ nbrFichier + "]  -> %s\n", item.getName()); 
-				nbrFichier++;
-			} 
-		}
-		return nbrFichier;
-	}
-	
-	public static World initierMap(int i) {
-		File dir = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "maps");
-		File[] list = dir.listFiles();
-		int nbrFichier = 0;
-		for(File item : list){
-			if(nbrFichier == i)
-			{ 
-				return initWorld(item.getName());
-			} 
-			nbrFichier++;
-		}
-		
-		return initWorld("World_1");
 	}
 
 }

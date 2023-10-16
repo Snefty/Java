@@ -39,21 +39,24 @@ public class FonctionSimulation {
 			}
 		}while(check != 'q');
 		
-		int nbrFichier= 0;
-		
 		do {
 			clearTerminal();
-			nbrFichier = FonctionFichier.afficherFichierMaps();
 			
+			System.out.println("[1] World_test");
+			System.out.println("[2] World_1");
 			System.out.println("\nEntrez le numéro de la map souhaite\n");
 			try {
 				choix = scan.nextInt();
 			}catch(Exception e) {
 				choix = -1;
 			}
-		}while(choix < 0 || choix > nbrFichier);
+		}while(choix < 1 || choix > 2);
 		
-		this.world = FonctionFichier.initierMap(choix);
+		if(choix == 1) {
+			this.world = FonctionFichier.initWorld("World_test");
+		}else {
+			this.world = FonctionFichier.initWorld("World_1");
+		}
 		
 	}
 	
