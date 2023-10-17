@@ -257,7 +257,6 @@ public class World {
 		entite.setEstTourPassé(true);
 	}
 
-	// A REFAIRE
 	public void deplacementIntruder(Intruder entite) {
 			
 		if(entite.getNbrSourceArgent() == entite.getNbrSourceArgent()) {

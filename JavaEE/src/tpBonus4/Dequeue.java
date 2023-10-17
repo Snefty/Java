@@ -51,11 +51,8 @@ public class Dequeue<E> {
 			this.first.next = ce;
 			ce.prev = this.first;
 			this.first = ce;
-			
-			ce.next = this.first;
-			ce.next.prev = ce;
-			this.first = ce; 
 		}
+		
 	}
 
 	public void addLast(E e) {
@@ -130,6 +127,7 @@ public class Dequeue<E> {
 				l += ce  + ",";
 			}
 			ce = ce.next;
+			
 		}
 		return l;
 	}
