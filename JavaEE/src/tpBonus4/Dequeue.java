@@ -1,6 +1,7 @@
 package tpBonus4;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Dequeue<E> {
@@ -25,7 +26,7 @@ public class Dequeue<E> {
 		}
 
 		ce = getLast();
-		while(ce.next != null){
+		while(ce != null){
 			size++;
 			ce = ce.next;
 		}
@@ -52,7 +53,7 @@ public class Dequeue<E> {
 			ce.prev = this.first;
 			this.first = ce;
 		}
-		
+
 	}
 
 	public void addLast(E e) {
@@ -120,16 +121,30 @@ public class Dequeue<E> {
 		}
 
 		ce = getLast();
-		while(ce.next != null){
-			if(ce.next.next == null) {
+		while(ce != null){
+			if(ce.next == null) {
 				l += ce;
 			}else {
 				l += ce  + ",";
 			}
 			ce = ce.next;
-			
+
 		}
 		return l;
 	}
 
+	private class Iter implements Iterator<E>{
+
+		@Override
+		public boolean hasNext() {
+			return false;
+		}
+
+		@Override
+		public E next() throws NoSuchElementException{
+			return null;
+		}
+
+	}
 }
+
