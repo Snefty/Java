@@ -660,6 +660,9 @@ public class World {
 		System.out.println("Sortie la plus proche " + indxSortiePlusProche);
 	}
 	
+	
+	
+	//A REFAIRE 
 	/**
 	 * Permet de connaitre la sortie la plus proche d'un intruder grace a ces coordonnées 
 	 * @return un String des coordonnée de la sortie la plus proche
@@ -670,29 +673,14 @@ public class World {
 		int xSortie = 0;
 		int ySortie = 0;
 		
-		int x = 0;
-		int y = 0;
-		
 		for(String sortieIndex : this.indxSortie) {
 			xSortie = Integer.parseInt(sortieIndex.split(" ")[0]);
 			ySortie = Integer.parseInt(sortieIndex.split(" ")[1]);
 			
-			if(xSortie - e.getPosX() < 0){
-				x = e.getPosX() - xSortie;
-			}else {
-				x = xSortie - e.getPosX();
-			}
-			
-			if(ySortie - e.getPosY() < 0){
-				y = e.getPosY() - ySortie;
-			}else {
-				y = ySortie - e.getPosY();
-			}
-			
-			System.out.println(x + " " + y);
-			
-			if(x + y < Integer.parseInt(indxSortiePlusProche.split(" ")[0])+Integer.parseInt(indxSortiePlusProche.split(" ")[1])) {
-				indxSortiePlusProche = x + " " + y;
+			for(int posX=e.getPosX(); posX<this.largeur ;posX++) {
+				for(int posY=e.getPosY(); posY<this.longueur ;posY++) {
+					
+				}
 			}
 			
 		}

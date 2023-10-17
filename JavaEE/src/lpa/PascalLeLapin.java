@@ -39,6 +39,9 @@ public class PascalLeLapin {
 		lesChocolats.add(choco4);
 		
 		LPA lpa1 = new LPA(lesChocolats, lesJardins);
+		lpa1.déposerChocolatJardin();
+		System.out.println(lpa1.avancer());
+		lpa1.déposerChocolatJardin();
 	}
 	
 }

@@ -132,7 +132,7 @@ public class Paquet {
 				System.out.println();
 				System.out.println(c1 + " / " + c2);
 
-				//demandeEntre();
+				demandeEntre();
 
 				if(pRC.compare(c1, c2) == 1) {
 					pl1.ajouterCarteGagner(c1);
