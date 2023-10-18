@@ -1,5 +1,7 @@
 package tpBonus7;
 
+import java.util.Objects;
+
 public class Identite {
 
 	private String nip;
@@ -25,9 +27,21 @@ public class Identite {
 		return "["+nip+"] " + nom + " " + prenom;
 	}
 	
-	public boolean equals(Object o) {
-		if((Identite)o == null) return false;
-		if(this.toString() != ((Identite)o).toString()) return false;
-		return true;
+	public int hashCode() {
+		int hashC = 0;
+		
+			hashC += hashC * 12 + nip.hashCode();
+			hashC += hashC * 41 + nom.hashCode();
+			hashC += hashC * 24 + prenom.hashCode();
+		
+		return hashC;
 	}
+
+	public boolean equals(Object obj) {
+		if ((Identite)obj == null)return false;
+		Identite other = (Identite) obj;
+		return this.nip == other.nip && this.nom == other.nom && this.prenom == other.prenom;
+	}
+	
+	
 }

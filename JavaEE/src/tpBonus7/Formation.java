@@ -1,5 +1,6 @@
 package tpBonus7;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Formation {
@@ -9,6 +10,7 @@ public class Formation {
 	
 	public Formation(String id) {
 		this.id = id;
+		this.listMatiére = new ArrayList<Matiere>();
 	}
 	
 	public boolean ajouterMatiere(Matiere mat) {
@@ -35,6 +37,10 @@ public class Formation {
 			}
 			
 			return a;
+	}
+
+	public String getId() {
+		return id;
 	}
 	
 }
