@@ -32,12 +32,18 @@ public class Fleuriste implements InterfaceFleuriste{
 		}
 		return (float) 0.0;
 	}
-
+	
+	
+	/**
+	 * Permet d'ajouter une fleur avec sa quantite dans le bouquet du client
+	 */
 	@Override
 	public void ajoutFleur(String nomFleur, int qte) {
+		//On prend les types de fleur dans notre stocke 
 		for(Fleur fleur : this.stockFleur) {
 			
 			if(fleur.getName() == nomFleur) {
+				//On verifie la quantité, si il reste assez on met ce que demande le client sinon on lui donne le reste du stock
 				if(qte > fleur.getQuantité()) {
 					bouquet.getCompo().add(new Fleur(nomFleur, fleur.getPrix(), fleur.getQuantité()));
 					bouquet.setPrix(fleur.getPrix()*fleur.getQuantité());
@@ -50,9 +56,20 @@ public class Fleuriste implements InterfaceFleuriste{
 			}
 		}
 	}
-
+	
+	/**
+	 * Permet d'afficher la facture du bouquet
+	 */
 	@Override
 	public void facturation() {
+		
+		/*
+		 * Premier if (si le bouquet existe):
+		 * 		- affiche la facture
+		 * 
+		 * Deuxieme if (si le bouquet n'existe pas):
+		 * 		- Affiche un message
+		 */
 		if(bouquet != null) {
 			System.out.println("\nFacture Bouquet :");
 			System.out.println("Commander par " + bouquet.getNomClient() + " " + bouquet.getPrenomClient() + "\n");

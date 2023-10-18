@@ -3,10 +3,10 @@ package tp5;
 public class Fleur {
 
 	private String name;
-	private float prix;
+	private double prix;
 	private int quantité;
 
-	public Fleur(String name, float prix, int quantité) {
+	public Fleur(String name, double prix, int quantité) {
 		this.name = name;
 		this.prix = prix;
 		this.quantité = quantité;
@@ -20,7 +20,7 @@ public class Fleur {
 		return name;
 	}
 
-	public float getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
