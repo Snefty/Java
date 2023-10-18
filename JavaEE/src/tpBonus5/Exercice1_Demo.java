@@ -1,4 +1,4 @@
-package tpBonus_5;
+package tpBonus5;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +12,10 @@ public class Exercice1_Demo {
 		cds.add(cd1);
 		CD cd2 = new CD("A7","Mon amour","Classique","Booba");
 		cds.add(cd2);
-		cds.add(new CD("I9","3 petit chat","rap","PetitOurson"));
-		cds.add(new CD("O9","Mon brother","pop","EnglishHomme"));
+		CD cd3 = new CD("I9","3 petit chat","rap","PetitOurson");
+		cds.add(cd3);
+		CD cd4 = new CD("O9","Mon brother","pop","EnglishHomme");
+		cds.add(cd4);
 		
 		Membre m1 = new Membre("ET3", "Dupuis", "Bob", "773 rue mimosa");
 		Membre m2 = new Membre("Y2U", "Durand", "Kevin", "773 rue mimosa");
@@ -43,7 +45,10 @@ public class Exercice1_Demo {
 		System.out.println();
 		media.emprunter(m1, cd1);
 		media.emprunter(m1, cd2);
+		media.emprunter(m1, cd3);
+		media.emprunter(m1, cd4);
 		media.emprunter(m2, cd1);
+		media.emprunter(m2, cd4);
 		System.out.println(m1.getNbrEmprunt());
 		System.out.println(m2.getNbrEmprunt());
 		

@@ -6,15 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class AnalyseTexte {
 
@@ -44,14 +41,41 @@ public class AnalyseTexte {
 		if(occurence.containsKey(mot)) return occurence.get(mot); 
 		return 0;
 	}
-
-	//PAS FINIS
+	
+	/**
+	 * Aider d'internet
+	 * 
+	 * Creation d'une Map qui trie les plus frequents au moins frequent
+	 * 
+	 * .stream : permet de traiter une map comme un éléments
+	 * .sorted : permet de trier les éléments selon les paramètre donné
+	 * 			- Map.Entry.comparingByValue() -> ressort les éléments du plus petit au plus grand
+	 * 			- Map.Entry.comparingByValue(Collections.reverseOrder()) -> ressort les éléments du plus grand au plus petit
+	 * .collect : permet de collecter les éléments qui ont etais trier, pour les mettre dans une Map
+	 * 			- Collectors.toMap -> prècise le type de retour qu'on veut
+	 * 			- Map.Entry::getKey et Map.Entry::getValue -> la clé et la valeur 
+	 * 			 ( :: ou double colon == expresion lambda)
+	 * 
+	 * @return Map<String, Integer> lesPlusFrequentauMoinsFrequent
+	 */
 	public Map<String, Integer> lesPlusFrequents() {
-		Map<String, Integer> lPF = new TreeMap<String, Integer>(this.occurence);
-
+		Map<String, Integer> lPF = this.occurence.entrySet().stream().sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2)->e1, LinkedHashMap::new));
+		
+		Iterator<Entry<String, Integer>> e = lPF.entrySet().iterator();
+		
+		for(int i = 0 ; i< 4 ; i++) {
+			String a = e.next().getKey();
+			System.out.println(" -> " + a + " : " + lPF.get(a));
+		}
+		
 		return lPF;
 	}
-
+	
+	public int retourneNbrMotDifferent() {
+		return this.occurence.size();
+	}
+	
 	public void afficherMap() {
 
 		for(Map.Entry<String, Integer> entry : this.occurence.entrySet()) {

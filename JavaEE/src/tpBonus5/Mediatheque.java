@@ -1,4 +1,4 @@
-package tpBonus_5;
+package tpBonus5;
 
 import java.util.HashSet;
 import java.util.Set;

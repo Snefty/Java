@@ -10,8 +10,9 @@ public class DemoAnalyseFichier {
 		System.out.println();
 		aT.afficherMap();
 		
-		System.out.println("\nLe nombre d'occurence pour le mot /Bonjour/ = " + aT.nbrOccurences("Bonjour"));
+		System.out.println("\nLe nombre d'occurence pour le mot /Bonjour/ = " + aT.nbrOccurences("Bonjour") + "\n");
 		aT.lesPlusFrequents();
+		System.out.println("\nNombre de mot différent : " + aT.retourneNbrMotDifferent());
 	}
 	
 }
