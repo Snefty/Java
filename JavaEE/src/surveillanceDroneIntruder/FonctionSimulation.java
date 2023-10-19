@@ -78,42 +78,23 @@ public class FonctionSimulation {
 			System.out.println("Liste Drone : " + world.getDrones().size());
 			System.out.println("Liste Drone : " + world.getIntruders().size());
 			
-			for(Drone drone : world.getDrones()) {
-				System.out.println("Drone :" + drone.getPosX() + " " + drone.getPosY());
-				do {
-					System.out.println("\nAppuyer sur [q] pour continuer\n");
-					try {
-						check = scan.next().charAt(0);
-					}catch(Exception e) {
-						check = ' ';
-					}
-				}while(check != 'q');
+			Bot bot = this.world.chacunSonTour();
 			
-				world.deplacementDrone(drone);
+			do {
+				System.out.println("\nAppuyer sur [q] pour continuer\n");
+				try {
+					check = scan.next().charAt(0);
+				}catch(Exception e) {
+					check = ' ';
+				}
+			}while(check != 'q');
+			
+			if(bot instanceof Drone) {
+				world.deplacementDrone((Drone)bot);
 				//world.peuxAttraperIntru(drone);
-				
-				System.out.println("Drone :" + drone.getPosX() + " " + drone.getPosY());
-			}
-			
-			clearTerminal();
-			System.out.println("Tour n°" + nbrTour);
-			affichageSimulation();
-			System.out.println("Liste Drone : " + world.getDrones().size());
-			System.out.println("Liste Intruder : " + world.getIntruders().size());
-			int i = 0;
-			for(Intruder intruder : world.getIntruders()) {
-				System.out.println("Intruder N°" + i + ":" + intruder.getPosX() + " " + intruder.getPosY());
-				do {
-					System.out.println("\nAppuyer sur [q] pour continuer\n");
-					try {
-						check = scan.next().charAt(0);
-					}catch(Exception e) {
-						check = ' ';
-					}
-				}while(check != 'q');
-				world.deplacementIntruder(intruder);
-				world.deplacementIntruderVersSortie(intruder);
-				i++;
+			}else {
+				world.deplacementIntruder((Intruder)bot);
+				//world.deplacementIntruderVersSortie(intruder);
 			}
 			
 			nbrTour++;

@@ -44,7 +44,15 @@ public class World {
 	 * 	[7][6][5]		[7][6][5]
 	 *
 	 */
-
+	
+	public Bot chacunSonTour() {
+		List<Bot> bot = new ArrayList<Bot>();
+		bot.addAll(Drones);
+		bot.addAll(Intruders);
+		
+		return bot.get(rand.nextInt(bot.size()));
+	}
+	
 	public void deplacementDrone(Drone entite) {
 
 		int choix = 0;

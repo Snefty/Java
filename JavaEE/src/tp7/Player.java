@@ -42,13 +42,15 @@ public class Player {
 
 	public Carte tirerCarte() {
 		if(!this.deckCartePrincipal.isEmpty()) {
-			return this.deckCartePrincipal.removeLast();
+			//return this.deckCartePrincipal.removeLast();
+			return null;
 		}else {
 			if(!this.deckCartesGagner.isEmpty()) {
 				this.deckCartePrincipal.addAll(deckCartesGagner);
 				Collections.shuffle(deckCartePrincipal);
 				this.deckCartesGagner.clear();
-				return this.deckCartePrincipal.removeLast();
+				//return this.deckCartePrincipal.removeLast();
+				return null;
 			}else {
 				return null;
 			}
