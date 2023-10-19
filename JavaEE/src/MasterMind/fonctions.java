@@ -7,10 +7,12 @@ import java.util.Scanner;
 
 public class fonctions {
 
-	private final int NBR_ESSAI = 4;
+	private final int NBR_ESSAI = 6;
 	private final int NBR_MAX_COMBI = 4;
+	
 	private Random rand = new Random();
-
+	private Scanner scan = new Scanner(System.in);
+	
 	private int[] combiSecret;
 	private char[] combiTrouve;
 
@@ -45,7 +47,6 @@ public class fonctions {
 		int[] essai = new int[this.NBR_MAX_COMBI];
 		int choix = 0;
 
-		Scanner scan = new Scanner(System.in);
 		for(int i = 0 ;i<essai.length ;i++) {
 			do {
 				System.out.println("Entrez un numéro entre 1 et 9 ?");
@@ -59,8 +60,6 @@ public class fonctions {
 			essai[i] = choix;
 		}
 
-		scan.close();
-
 		return essai;
 	}
 
@@ -69,27 +68,34 @@ public class fonctions {
 
 		int nbrEssai = 0;
 
-		while(nbrEssai != this.NBR_ESSAI) {
+		while(nbrEssai < this.NBR_ESSAI && nbrChiffreALeurPlace(essai) != this.NBR_MAX_COMBI) {
 			clearTerminal();
-			this.afficherCombinaisonTrouve();
-
-			for(int i : this.combiSecret) {
+			afficherCombinaisonTrouve();
+			afficherCombinaisonSecret();
+			
+			System.out.println("\nNombre d'essai restant : " + (this.NBR_ESSAI-nbrEssai));
+			System.out.println("Nombre de chiffre à leur place : " + nbrChiffreALeurPlace(essai));
+			System.out.println("Nombre present mais pas à la bonne place : " + nbrPresentPasBonnePlace(essai) + "\n");
+			
+			for(int i : essai) {
 				System.out.print("["+i + "] ");
 			}
-
-			System.out.println("\nNombre de chiffre à leur place : " + nbrChiffreALeurPlace(essai));
-			System.out.println("Nombre present mais pas à la bonne place : " );
-
+			
+			System.out.println("\n");
+			
 			essai = entreUtilisateur();
-
+			nbrEssai++;
 		}
 
+		clearTerminal();
 		if(nbrEssai == this.NBR_ESSAI) {
 			System.out.println("Perdu, nombre d'essai epuisé !! \n");
-			System.out.println("Le combinaison secrete est : ");
+			System.out.println("Le combinaison secrete étais : ");
 			this.afficherCombinaisonSecret();
 		}else {
 			System.out.println("GAGNER !!");
+			System.out.println("Le combinaison secrete étais : ");
+			this.afficherCombinaisonSecret();
 		}
 	}
 
@@ -106,9 +112,9 @@ public class fonctions {
 	private List<Integer> nbrPresentPasBonnePlace(int[] essai){
 		List<Integer> nbrP = new ArrayList<Integer>();
 
-		for(int i  = 0; i<essai.length ;i++) {
-			for(int idx = 0; idx<this.combiSecret.length; i++) {
-				
+		for(int i  = 0; i<this.combiSecret.length ;i++) {
+			for(int idx = 0; idx<essai.length; idx++) {
+				if(combiSecret[i] != essai[i] && combiSecret[i] == essai[idx]) nbrP.add(combiSecret[i]);
 			}
 		}
 
